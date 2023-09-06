@@ -10,6 +10,7 @@ const NewsListBlock = styled.div`
   width: 768px;
   margin: 0 auto;
   margin-top: 2rem;
+
   @media screen and (max-width: 768px) {
     width: 100%;
     padding-left: 1rem;
@@ -23,7 +24,12 @@ const NewsList = ({ category }) => {
     return axios.get(`https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=6107334849ef4085880c498892716271`);
   }, [category]);
 
-  if (loading) return <NewsListBlock style={{ fontSize: '5rem', margin: 'auto' }}>LOADING ...</NewsListBlock>;
+  if (loading)
+    return (
+      <NewsListBlock style={{ fontSize: '5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20%' }}>
+        LOADING ...
+      </NewsListBlock>
+    );
   if (!response) return null;
   if (error) return <NewsListBlock>에러 발생 !</NewsListBlock>;
 
